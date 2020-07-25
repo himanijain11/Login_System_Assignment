@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Login from '../src/Login/Login';
-import Dashboard from './Dashboard/Dashboard';
+import Login from './views/Login/Login';
+import Dashboard from './views/Dashboard/Dashboard';
 import { ThemeProvider } from '@material-ui/core';
-import {theme} from './theme'
+import { theme } from './theme'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+
 
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
-      <Dashboard/>
-    </ThemeProvider>,
+  <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={Login} />
+        <Route path="/Dashboard" exact component={Dashboard} />
+      </Switch>
+    </BrowserRouter>
+  </ThemeProvider>,
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA

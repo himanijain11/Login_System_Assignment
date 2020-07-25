@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -28,7 +27,7 @@ import { mainListItems } from '../listItems/listItems';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PersonIcon from '@material-ui/icons/Person';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-import { Hidden } from '@material-ui/core';
+import { Hidden, SwipeableDrawer } from '@material-ui/core';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -134,6 +133,7 @@ export default function Dashboard() {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -143,15 +143,27 @@ export default function Dashboard() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
 
-  console.log(window.innerHeight)
+  console.log(window.innerWidth)
+
+
+  const handleResize = (e) => {
+    // this.setState({ windowWidth: window.innerWidth });
+    setWindowWidth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+  })
+
+
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-
       <AppBar elevation={0} style={{ background: "#242438" }} position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <Grid container className={classes.title_bar}>
+          <img width="60px" src="https://img.icons8.com/plasticine/100/000000/stethoscope.png"/>
             <Hidden mdDown>
               <Grid item xs={10} md={4} lg={4}>
                 <Typography
@@ -178,7 +190,7 @@ export default function Dashboard() {
 
           <Grid container justify="flex-end" >
             <Hidden mdDown>
-              <Grid item container xs={1} md={1} lg={2}>
+              <Grid item container xs={1} md={2} lg={2}>
                 <Select
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
@@ -217,7 +229,7 @@ export default function Dashboard() {
 
         </Toolbar>
       </AppBar>
-      <Drawer
+      {windowWidth > 600 ? <Drawer
         anchor="top"
         variant="permanent"
         classes={{
@@ -232,7 +244,19 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <List style={{ background: "#222738", color: "white" }}>{mainListItems}</List>
-      </Drawer>
+      </Drawer> :
+        <SwipeableDrawer
+          anchor="top"
+          open={open}
+          onClose={() => setOpen(false)}
+        >
+          <div style={{ background: "#242438" }} className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <List style={{ background: "#222738", color: "white" }}>{mainListItems}</List>
+        </SwipeableDrawer>}
       <main style={{ background: "#eeeeee" }} className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
