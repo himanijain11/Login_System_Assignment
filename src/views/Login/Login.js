@@ -9,6 +9,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import { IconButton, InputAdornment, Typography } from '@material-ui/core';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import { Link } from 'react-router-dom';
+
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -38,6 +45,15 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  footer: {
+    position: "relative",
+    height: "300px",
+    width: "100%",
+    backgroundColor: "#333333",
+  },
+
+
+
 }));
 
 export default function SignInSide(props) {
@@ -50,7 +66,7 @@ export default function SignInSide(props) {
     if (email === 'alok21@gmail.com' && password === '123')
       props.history.push('Dashboard')
   }
-  console.log(props)
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -76,7 +92,11 @@ export default function SignInSide(props) {
             </Typography>
         </Grid>
       </Grid>
-      <Grid style={{ background: "#eeeeee" }} item xs={12} sm={8} md={5} component={Paper} elevation={10} square>
+      <Grid style={{ background: "#eeeeee" }}
+        item xs={12} sm={8} md={5}
+        component={Paper}
+        elevation={0}
+        square>
         <div className={classes.paper}>
           <form className={classes.form} noValidate>
             <TextField
@@ -135,6 +155,33 @@ export default function SignInSide(props) {
           </form>
         </div>
       </Grid>
+
+      <Grid container alignItems="center" style={{ margin: "0 10px" }}>
+        <Grid item xs={8} md={6} lg={6}>
+          <span style={{
+            fontFamily: "poppins",
+            opacity: ".8",
+            fontSize: ".8rem"
+          }}>{'Copyright.All Right Reserved'}</span>
+        </Grid>
+
+        <Grid container item xs={4} md={6} lg={6} justify="flex-end">
+          <Grid justify="flex-end" item container xs={4} md={1} lg={1}>
+            <FacebookIcon />
+          </Grid>
+          <Grid justify="flex-end" item container xs={4} md={1} lg={1}>
+            <TwitterIcon />
+          </Grid>
+          <Grid justify="flex-end" item container xs={4} md={1} lg={1}>
+            <LinkedInIcon />
+          </Grid>
+        </Grid>
+      </Grid>
+
     </Grid>
+
   );
 }
+
+
+

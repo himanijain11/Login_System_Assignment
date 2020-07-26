@@ -27,7 +27,10 @@ import { mainListItems } from '../listItems/listItems';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PersonIcon from '@material-ui/icons/Person';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 import { Hidden, SwipeableDrawer } from '@material-ui/core';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -118,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
     height: 100,
   },
   fixedHeight2: {
-    height: 150,
+    height: 170,
   },
   badge: {
     backgroundColor: "#f4b700",
@@ -163,7 +166,7 @@ export default function Dashboard() {
       <AppBar elevation={0} style={{ background: "#242438" }} position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <Grid container className={classes.title_bar}>
-          <img width="60px" src="https://img.icons8.com/plasticine/100/000000/stethoscope.png"/>
+            <img width="60px" src="https://img.icons8.com/plasticine/100/000000/stethoscope.png" />
             <Hidden mdDown>
               <Grid item xs={10} md={4} lg={4}>
                 <Typography
@@ -259,8 +262,8 @@ export default function Dashboard() {
         </SwipeableDrawer>}
       <main style={{ background: "#eeeeee" }} className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2}>
+        <Container maxWidth="lg" style={{ height: "50vh" }} className={classes.container}>
+          <Grid container style={{ height: "50vh" }} spacing={2}>
             <Grid container item xs={12} md={8} lg={8} spacing={2}>
               <Grid item xs={12} md={4} lg={4} >
                 <Paper className={fixedHeightPaper}>
@@ -299,19 +302,39 @@ export default function Dashboard() {
               </Grid>
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
-              <Paper className={fixedHeightPaper2} style={{ paddingLeft: "30px", paddingTop: "30px" }}>
+              <Paper style={{ height: "70%" }} className={fixedHeightPaper2}
+                style={{
+                  paddingLeft: "30px",
+                  paddingTop: "15px"
+                }}>
                 <Grid direction="column" container spacing={2}>
+                  <Typography 
+                  style={{
+                    fontFamily: "Poppins",
+                    fontSize: "1.2rem",
+                    opacity: ".8"
+                  }}>
+                    Quick Details
+                  </Typography>
+                  <div style={{
+                    height: "1px",
+                    width: "100%",
+                    background: "#eeeeee",
+                    margin: "8px 0"
+                  }} />
                   <Grid container spacing={1}>
                     <Grid container item xs={2} md={2} lg={2} style={{ marginBottom: "10px" }}>
-                      <PersonAddIcon />
+                      <AddBoxIcon />
                     </Grid>
+
                     <Grid container item xs={8} md={8} lg={8} >
                       <Typography style={{ fontFamily: "Poppins" }}>Query Asked</Typography>
                     </Grid>
                   </Grid>
                   <Grid container spacing={1} style={{ marginBottom: "10px" }}>
                     <Grid container item xs={2} md={2} lg={2}>
-                      <PersonAddIcon />
+                      <QuestionAnswerIcon
+                      />
                     </Grid>
                     <Grid container item xs={8} md={8} lg={8} >
                       <Typography style={{ fontFamily: "Poppins" }}>Medi Calls</Typography>
@@ -319,7 +342,7 @@ export default function Dashboard() {
                   </Grid>
                   <Grid container spacing={1}>
                     <Grid container item xs={2} md={2} lg={2}>
-                      <PersonAddIcon />
+                      <SupervisorAccountIcon />
                     </Grid>
                     <Grid container item xs={8} md={8} lg={8} >
                       <Typography style={{ fontFamily: "Poppins" }}>Disease Diagnosis</Typography>
